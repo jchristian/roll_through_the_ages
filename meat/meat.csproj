@@ -40,6 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="GameRunner.cs" />
+    <Compile Include="ICheckForEndingConditions.cs" />
+    <Compile Include="ICreateATurnQueue.cs" />
+    <Compile Include="IReturnTheNextPlayer.cs" />
+    <Compile Include="IUpdateTheScoreForATurn.cs" />
+    <Compile Include="Move.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
