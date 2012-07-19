@@ -44,8 +44,9 @@
     <Compile Include="ICheckForEndingConditions.cs" />
     <Compile Include="ICreateATurnQueue.cs" />
     <Compile Include="IReturnTheNextPlayer.cs" />
+    <Compile Include="IScoreATurn.cs" />
     <Compile Include="IUpdateTheScoreForATurn.cs" />
-    <Compile Include="Move.cs" />
+    <Compile Include="Turn.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

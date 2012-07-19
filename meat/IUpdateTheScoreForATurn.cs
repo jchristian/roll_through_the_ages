@@ -2,6 +2,6 @@ namespace meat
 {
     public interface IUpdateTheScoreForATurn
     {
-        void update(Move move);
+        void update(Turn turn);
     }
 }

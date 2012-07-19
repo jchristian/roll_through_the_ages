@@ -24,7 +24,7 @@ namespace ui.console
                     Console.WriteLine("Please enter 2, 3 or 4 players");
             }
 
-            var game = new GameRunner(null).play_new_game(Enumerable.Range(1, number_of_players).Select(player_number => new Player(string.Format("Player {0}", player_number))).ToList());
+            var game = new GameRunner().play_new_game(Enumerable.Range(1, number_of_players).Select(player_number => new Player(string.Format("Player {0}", player_number))).ToList());
             var view_engine = new ViewEngine();
 
             do

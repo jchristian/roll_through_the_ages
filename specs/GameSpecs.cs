@@ -39,16 +39,14 @@ namespace specs
         [Subject(typeof(Game))]
         public class when_checking_if_the_game_is_over : concern
         {
-            public class and_no_players_have_ending_conditions
+            public class and_there_is_not_an_ending_condition
             {
                 Establish c = () =>
                 {
-                    var players = Enumerable.Range(1, 10).Select(x => fake.an<Player>());
-
-                    depends.on(players);
+                    var players = depends.on<IEnumerable<Player>>();
                     var ending_condition_checker = depends.@on<ICheckForEndingConditions>();
 
-                    ending_condition_checker.setup(x => x.has_any(Moq.It.IsAny<Player>())).Return(false);
+                    ending_condition_checker.setup(x => x.has_any(players)).Return(false);
                 };
 
                 Because of = () =>
@@ -60,20 +58,14 @@ namespace specs
                 static bool is_game_over;
             }
 
-            public class and_a_player_has_an_ending_condition
+            public class and_there_is_an_ending_condition
             {
                 Establish c = () =>
                 {
-                    var players = Enumerable.Range(1, 10).Select(x => fake.an<Player>());
-
-                    var player_with_an_ending_condition = fake.an<Player>();
-                    player_with_an_ending_condition.setup(x => x.has_an_ending_condition).Return(true);
-
-                    depends.on(players.Concat(new[] { player_with_an_ending_condition }));
+                    var players = depends.on<IEnumerable<Player>>();
                     var ending_condition_checker = depends.@on<ICheckForEndingConditions>();
 
-                    ending_condition_checker.setup(x => x.has_any(Moq.It.IsAny<Player>())).Return(false);
-                    ending_condition_checker.setup(x => x.has_any(player_with_an_ending_condition)).Return(true);
+                    ending_condition_checker.setup(x => x.has_any(players)).Return(true);
                 };
 
                 Because of = () =>
@@ -84,6 +76,27 @@ namespace specs
 
                 static bool is_game_over;
             }
+        }
+
+        [Subject(typeof(Game))]
+        public class when_scoring_a_turn : concern
+        {
+            Establish c = () =>
+            {
+                turn = fake.an<Turn>();
+                players = depends.on<IEnumerable<Player>>();
+                scorer = depends.on<IScoreATurn>();
+            };
+            
+            Because of = () =>
+                sut.score_turn(turn);
+
+            It should_delegate_to_the_turn_scorer = () =>
+                scorer.received(x => x.score(turn, players));
+            
+            static Turn turn;
+            static IEnumerable<Player> players;
+            static IScoreATurn scorer;
         }
     }
 }
