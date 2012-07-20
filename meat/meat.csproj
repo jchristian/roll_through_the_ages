@@ -39,8 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="food_collection\AgricultureFoodCalculator.cs" />
+    <Compile Include="food_collection\DefaultFoodCalculator.cs" />
+    <Compile Include="food_collection\FoodCalculatorRegistry.cs" />
+    <Compile Include="food_collection\FoodCollector.cs" />
+    <Compile Include="food_collection\ICalculateTheFoodFromADice.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameRunner.cs" />
+    <Compile Include="GoodStore.cs" />
     <Compile Include="ICheckForEndingConditions.cs" />
     <Compile Include="ICreateATurnQueue.cs" />
     <Compile Include="IReturnTheNextPlayer.cs" />

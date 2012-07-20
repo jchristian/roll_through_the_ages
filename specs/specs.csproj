@@ -63,6 +63,7 @@
     <Compile Include="GameSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TurnQueueSpecs.cs" />
+    <Compile Include="TurnScorerSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

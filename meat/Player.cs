@@ -1,14 +1,38 @@
+using System.Collections.Generic;
+
 namespace meat
 {
     public class Player
     {
-        public virtual string name { get; private set; }
-        public virtual bool has_an_ending_condition { get; private set; }
+        IList<Development> developments;
 
-        public Player() : this("") {}
-        public Player(string name)
+        public string name { get; private set; }
+        public bool has_an_ending_condition { get; private set; }
+        public int food { get; set; }
+        public GoodStore good_store { get; private set; }
+
+        public Player() : this("") { }
+        public Player(string name) : this(name, new GoodStore()) { }
+        public Player(string name, GoodStore good_store)
         {
             this.name = name;
+            this.good_store = good_store;
+            developments = new List<Development>();
         }
+
+        public void add_development(Development development)
+        {
+            developments.Add(development);
+        }
+
+        public bool has(Development development)
+        {
+            return developments.Contains(development);
+        }
+    }
+
+    public enum Development
+    {
+        Agriculture
     }
 }
