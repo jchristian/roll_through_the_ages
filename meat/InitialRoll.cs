@@ -7,6 +7,7 @@ namespace meat
     {
         public Player player { get; set; }
         public IEnumerable<Die> dice { get; set; }
+        public IEnumerable<Player> opponents { get; set; }
 
         public InitialRoll()
         {

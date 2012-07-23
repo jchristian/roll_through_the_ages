@@ -2,6 +2,7 @@ namespace meat
 {
     public enum Development
     {
-        Agriculture
+        Agriculture,
+        Irrigation
     }
 }
