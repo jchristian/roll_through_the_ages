@@ -4,6 +4,7 @@ using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.moq;
 using meat;
+using meat.initial_roll;
 
 namespace specs
 {
@@ -71,7 +72,7 @@ namespace specs
                 Because of = () =>
                     is_game_over = sut.is_over;
 
-                It should_be_over = () =>
+                It shoulda_be_over = () =>
                     is_game_over.ShouldBeTrue();
 
                 static bool is_game_over;
@@ -83,20 +84,18 @@ namespace specs
         {
             Establish c = () =>
             {
-                turn = fake.an<Turn>();
-                players = depends.on<IEnumerable<Player>>();
-                scorer = depends.on<IScoreATurn>();
+                initial_roll = fake.an<InitialRoll>();
+                scorer = depends.on<InitialRollScorer>();
             };
             
             Because of = () =>
-                sut.score_turn(turn);
+                sut.score_initial_roll(initial_roll);
 
             It should_delegate_to_the_turn_scorer = () =>
-                scorer.received(x => x.score(turn, players));
+                scorer.received(x => x.score(initial_roll));
             
-            static Turn turn;
-            static IEnumerable<Player> players;
-            static IScoreATurn scorer;
+            static InitialRoll initial_roll;
+            static InitialRollScorer scorer;
         }
     }
 }

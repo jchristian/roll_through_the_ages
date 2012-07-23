@@ -14,9 +14,9 @@ namespace meat
             return current_game;
         }
 
-        public void turn_submitted(Turn turn)
+        public void score_initial_roll(InitialRoll initial_roll)
         {
-            current_game.score_turn(turn);
+            current_game.score_initial_roll(initial_roll);
 
             if(!current_game.is_over)
                 current_game.start_next_turn();

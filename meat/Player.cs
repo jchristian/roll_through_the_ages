@@ -10,6 +10,8 @@ namespace meat
         public bool has_an_ending_condition { get; private set; }
         public int food { get; set; }
         public GoodStore good_store { get; private set; }
+        public int cities { get; set; }
+        public int disasters { get; set; }
 
         public Player() : this("") { }
         public Player(string name) : this(name, new GoodStore()) { }
@@ -29,10 +31,10 @@ namespace meat
         {
             return developments.Contains(development);
         }
-    }
 
-    public enum Development
-    {
-        Agriculture
+        public void add_goods(int quantity_of_goods)
+        {
+            good_store.Add(quantity_of_goods);
+        }
     }
 }

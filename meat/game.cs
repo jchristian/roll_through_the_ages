@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using meat.initial_roll;
 
 namespace meat
 {
@@ -8,9 +8,9 @@ namespace meat
         readonly IEnumerable<Player> players;
         IReturnTheNextPlayer turn_queue;
         ICheckForEndingConditions ending_condition_checker;
-        IScoreATurn scorer;
+        InitialRollScorer scorer;
 
-        public Game(IEnumerable<Player> players, ICreateATurnQueue turn_queue_factory, ICheckForEndingConditions ending_condition_checker, IScoreATurn scorer)
+        public Game(IEnumerable<Player> players, ICreateATurnQueue turn_queue_factory, ICheckForEndingConditions ending_condition_checker, InitialRollScorer scorer)
         {
             this.players = players;
             this.ending_condition_checker = ending_condition_checker;
@@ -26,9 +26,9 @@ namespace meat
             current_turn = turn_queue.next();
         }
 
-        public void score_turn(Turn turn)
+        public void score_initial_roll(InitialRoll initial_roll)
         {
-            scorer.score(turn, players);
+            scorer.score(initial_roll);
         }
     }
 }

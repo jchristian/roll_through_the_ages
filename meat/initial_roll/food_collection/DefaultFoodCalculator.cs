@@ -1,4 +1,4 @@
-namespace meat.food_collection
+namespace meat.initial_roll.food_collection
 {
     public class DefaultFoodCalculator : ICalculateTheFoodFromADice
     {
