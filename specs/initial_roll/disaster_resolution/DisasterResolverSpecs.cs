@@ -4,12 +4,20 @@ using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.nsubstitue;
 using meat;
 using meat.initial_roll.disaster_resolution;
+using meat.initial_roll.disaster_resolution.resolutions;
 
 namespace specs.initial_roll.disaster_resolution
 {
     public class DisasterResolverSpecs
     {
-        public abstract class concern : Observes<DisasterResolver> {}
+        public abstract class concern : Observes<DisasterResolver>
+        {
+            Establish c = () =>
+            {
+                depends.on(new ResolutionFromDice(new DisasterResolutionRegistry(new DisasterResolutions())));
+                depends.on(new ResolutionFromFamine());
+            };
+        }
 
         [Subject(typeof(DisasterResolver))]
         public class when_resolving_disasters : concern
