@@ -18,7 +18,18 @@ namespace meat.initial_roll.disaster_resolution
 
             if(number_of_disasters == 3)
                 foreach (var opponent in initial_roll.opponents)
-                    opponent.disasters += 3;
+                    if(!opponent.has(Development.Medicine))
+                        opponent.disasters += 3;
+
+            if (number_of_disasters == 4 && !initial_roll.player.has(Monument.GreatWall))
+                initial_roll.player.disasters += 4;
+
+            if(number_of_disasters == 5)
+                if(initial_roll.player.has(Development.Religion))
+                    foreach(var opponent in initial_roll.opponents)
+                        opponent.remove_all_goods();
+                else
+                    initial_roll.player.remove_all_goods();
         }
     }
 }

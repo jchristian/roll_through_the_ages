@@ -2,7 +2,7 @@
 using System.Linq;
 using Machine.Specifications;
 using developwithpassion.specifications.extensions;
-using developwithpassion.specifications.moq;
+using developwithpassion.specifications.nsubstitue;
 using meat;
 using meat.initial_roll;
 

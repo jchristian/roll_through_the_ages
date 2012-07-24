@@ -31,16 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="developwithpassion.specifications">
-      <HintPath>..\packages\developwithpassion.specifications.moq.0.5.1\lib\developwithpassion.specifications.dll</HintPath>
+      <HintPath>..\packages\developwithpassion.specifications.nsubstitue.0.5.1\lib\developwithpassion.specifications.dll</HintPath>
     </Reference>
-    <Reference Include="developwithpassion.specifications.moq">
-      <HintPath>..\packages\developwithpassion.specifications.moq.0.5.1\lib\developwithpassion.specifications.moq.dll</HintPath>
+    <Reference Include="developwithpassion.specifications.nsubstitue">
+      <HintPath>..\packages\developwithpassion.specifications.nsubstitue.0.5.1\lib\developwithpassion.specifications.nsubstitue.dll</HintPath>
     </Reference>
     <Reference Include="Machine.Fakes">
       <HintPath>..\packages\Machine.Fakes.0.5.1\lib\net40\Machine.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Fakes.Adapters.Moq">
-      <HintPath>..\packages\Machine.Fakes.Moq.0.5.1\lib\net40\Machine.Fakes.Adapters.Moq.dll</HintPath>
+    <Reference Include="Machine.Fakes.Adapters.NSubstitute">
+      <HintPath>..\packages\Machine.Fakes.NSubstitute.0.5.1\lib\net40\Machine.Fakes.Adapters.NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="Machine.Specifications">
       <HintPath>..\packages\Machine.Specifications.0.5.7\lib\net40\Machine.Specifications.dll</HintPath>
@@ -48,8 +48,8 @@
     <Reference Include="Machine.Specifications.Clr4">
       <HintPath>..\packages\Machine.Specifications.0.5.7\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.4.2.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,18 +61,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameSpecs.cs" />
+    <Compile Include="initial_roll\city_feeding\CityFeederSpecs.cs" />
+    <Compile Include="initial_roll\disaster_resolution\DisasterResolverSpecs.cs" />
+    <Compile Include="initial_roll\food_collection\FoodCollectorSpecs.cs" />
+    <Compile Include="initial_roll\goods_collection\GoodCollectorSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TurnQueueSpecs.cs" />
     <Compile Include="InitialScorerSpecs.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\meat\meat.csproj">
       <Project>{2632fa48-31a6-419e-bcb5-c667c9952517}</Project>
       <Name>meat</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

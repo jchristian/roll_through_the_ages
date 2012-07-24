@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Machine.Specifications;
-using developwithpassion.specifications.moq;
+using developwithpassion.specifications.nsubstitue;
 using meat;
 
 namespace specs

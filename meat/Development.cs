@@ -3,6 +3,8 @@ namespace meat
     public enum Development
     {
         Agriculture,
-        Irrigation
+        Irrigation,
+        Medicine,
+        Religion
     }
 }

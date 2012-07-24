@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace meat
@@ -5,6 +6,7 @@ namespace meat
     public class Player
     {
         IList<Development> developments;
+        IList<Monument> monuments;
 
         public string name { get; private set; }
         public bool has_an_ending_condition { get; private set; }
@@ -20,11 +22,27 @@ namespace meat
             this.name = name;
             this.good_store = good_store;
             developments = new List<Development>();
+            monuments = new List<Monument>();
         }
 
-        public void add_development(Development development)
+        public void add(Development development)
         {
             developments.Add(development);
+        }
+
+        public void add(Monument monument)
+        {
+            monuments.Add(monument);
+        }
+
+        public void add_goods(int quantity_of_goods)
+        {
+            good_store.Add(quantity_of_goods);
+        }
+
+        public virtual void remove_all_goods()
+        {
+            good_store.remove_all();
         }
 
         public bool has(Development development)
@@ -32,9 +50,9 @@ namespace meat
             return developments.Contains(development);
         }
 
-        public void add_goods(int quantity_of_goods)
+        public bool has(Monument monument)
         {
-            good_store.Add(quantity_of_goods);
+            return monuments.Contains(monument);
         }
     }
 }
