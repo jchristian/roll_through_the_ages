@@ -5,15 +5,15 @@ using meat.initial_roll.goods_collection;
 
 namespace meat.initial_roll
 {
-    public class InitialRollScorer
+    public class InitialRollUpdater
     {
         GoodCollector good_collector;
         FoodCollector food_collector;
         DisasterResolver disaster_resolver;
         CityFeeder city_feeder;
 
-        protected InitialRollScorer() { }
-        public InitialRollScorer(GoodCollector good_collector, FoodCollector food_collector, DisasterResolver disaster_resolver, CityFeeder city_feeder)
+        protected InitialRollUpdater() { }
+        public InitialRollUpdater(GoodCollector good_collector, FoodCollector food_collector, DisasterResolver disaster_resolver, CityFeeder city_feeder)
         {
             this.good_collector = good_collector;
             this.food_collector = food_collector;
@@ -21,7 +21,7 @@ namespace meat.initial_roll
             this.city_feeder = city_feeder;
         }
 
-        public virtual void score(InitialRoll initial_roll)
+        public virtual void update_for(InitialRoll initial_roll)
         {
             good_collector.collect(initial_roll);
             food_collector.collect(initial_roll);

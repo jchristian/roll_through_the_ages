@@ -1,6 +1,7 @@
 using Machine.Specifications;
 using developwithpassion.specifications.nsubstitue;
 using meat;
+using meat.initial_roll;
 using meat.initial_roll.food_collection;
 
 namespace specs.initial_roll.food_collection
@@ -18,13 +19,13 @@ namespace specs.initial_roll.food_collection
                 {
                     initial_food = 5;
 
-                    active_player = new Player("", fake.an<GoodStore>());
-                    active_player.food = initial_food;
+                    var player = new Player("", fake.an<GoodStore>());
+                    player.food = initial_food;
 
                     die_one = new Die { food = 3 };
                     die_two = new Die { food = 2 };
 
-                    initial_roll = new InitialRoll { dice = new[] { die_one, die_two }, player = active_player };
+                    initial_roll = new InitialRoll { dice = new[] { die_one, die_two }, player = player };
 
                     depends.on(new FoodCalculatorRegistry());
                 };
@@ -33,10 +34,9 @@ namespace specs.initial_roll.food_collection
                     sut.collect(initial_roll);
 
                 It should_add_the_rolled_quantity_of_food = () =>
-                    active_player.food.ShouldEqual(initial_food + die_one.food + die_two.food);
+                    initial_roll.player.food.ShouldEqual(initial_food + die_one.food + die_two.food);
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_food;
                 static Die die_one;
                 static Die die_two;
@@ -48,14 +48,14 @@ namespace specs.initial_roll.food_collection
                 {
                     initial_food = 5;
 
-                    active_player = new Player("", fake.an<GoodStore>());
-                    active_player.add(Development.Agriculture);
-                    active_player.food = initial_food;
+                    var player = new Player("", fake.an<GoodStore>());
+                    player.add(Development.Agriculture);
+                    player.food = initial_food;
 
                     die_one = new Die { food = 3 };
                     die_two = new Die { food = 2 };
 
-                    initial_roll = new InitialRoll { dice = new[] { die_one, die_two }, player = active_player };
+                    initial_roll = new InitialRoll { dice = new[] { die_one, die_two }, player = player };
 
                     depends.on(new FoodCalculatorRegistry());
                 };
@@ -64,10 +64,9 @@ namespace specs.initial_roll.food_collection
                     sut.collect(initial_roll);
 
                 It should_add_the_an_extra_food_for_every_food_die = () =>
-                    active_player.food.ShouldEqual(initial_food + (die_one.food + 1) + (die_two.food + 1));
+                    initial_roll.player.food.ShouldEqual(initial_food + (die_one.food + 1) + (die_two.food + 1));
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_food;
                 static Die die_one;
                 static Die die_two;

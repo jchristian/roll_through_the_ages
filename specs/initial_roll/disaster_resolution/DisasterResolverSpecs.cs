@@ -3,6 +3,7 @@ using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.nsubstitue;
 using meat;
+using meat.initial_roll;
 using meat.initial_roll.disaster_resolution;
 using meat.initial_roll.disaster_resolution.resolutions;
 
@@ -27,19 +28,18 @@ namespace specs.initial_roll.disaster_resolution
                 Establish c = () =>
                 {
                     initial_disasters = 2;
-                    active_player = new Player { cities = 5, food = 5, disasters = initial_disasters };
+                    var player = new Player { cities = 5, food = 5, disasters = initial_disasters };
 
-                    initial_roll = new InitialRoll { player = active_player };
+                    initial_roll = new InitialRoll { player = player };
                 };
 
                 Because of = () =>
                     sut.resolve(initial_roll);
 
                 It should_not_have_any_additional_disasters = () =>
-                    active_player.disasters.ShouldEqual(initial_disasters + (active_player.cities - active_player.food));
+                    initial_roll.player.disasters.ShouldEqual(initial_disasters + (initial_roll.player.cities - initial_roll.player.food));
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
             }
 
@@ -48,19 +48,18 @@ namespace specs.initial_roll.disaster_resolution
                 Establish c = () =>
                 {
                     initial_disasters = 2;
-                    active_player = new Player { cities = 7, food = 5, disasters = initial_disasters };
+                    var player = new Player { cities = 7, food = 5, disasters = initial_disasters };
 
-                    initial_roll = new InitialRoll { player = active_player };
+                    initial_roll = new InitialRoll { player = player };
                 };
 
                 Because of = () =>
                     sut.resolve(initial_roll);
 
                 It should_add_a_disaster_for_each_city_that_cannot_be_fed = () =>
-                    active_player.disasters.ShouldEqual(initial_disasters + (active_player.cities - active_player.food));
+                    initial_roll.player.disasters.ShouldEqual(initial_disasters + (initial_roll.player.cities - initial_roll.player.food));
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
             }
 
@@ -69,22 +68,21 @@ namespace specs.initial_roll.disaster_resolution
                 Establish c = () =>
                 {
                     initial_disasters = 2;
-                    active_player = new Player { cities = 5, food = 5, disasters = initial_disasters };
+                    var player = new Player { cities = 5, food = 5, disasters = initial_disasters };
 
                     var dice = Enumerable.Range(1, 1).Select(x => new Die { disasters = 1 });
                     dice = dice.Concat(new[] { new Die { disasters = 0 } });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player };
+                    initial_roll = new InitialRoll { dice = dice, player = player };
                 };
 
                 Because of = () =>
                     sut.resolve(initial_roll);
 
                 It should_not_change_the_disasters = () =>
-                    active_player.disasters.ShouldEqual(initial_disasters);
+                    initial_roll.player.disasters.ShouldEqual(initial_disasters);
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
             }
 
@@ -93,21 +91,20 @@ namespace specs.initial_roll.disaster_resolution
                 Establish c = () =>
                 {
                     initial_disasters = 2;
-                    active_player = new Player { cities = 5, food = 5, disasters = initial_disasters };
+                    var player = new Player { cities = 5, food = 5, disasters = initial_disasters };
 
                     var dice = Enumerable.Range(1, 2).Select(x => new Die { disasters = 1 });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player };
+                    initial_roll = new InitialRoll { dice = dice, player = player };
                 };
 
                 Because of = () =>
                     sut.resolve(initial_roll);
 
                 It should_give_the_player_two_disasters = () =>
-                    active_player.disasters.ShouldEqual(initial_disasters + 2);
+                    initial_roll.player.disasters.ShouldEqual(initial_disasters + 2);
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
             }
 
@@ -116,22 +113,21 @@ namespace specs.initial_roll.disaster_resolution
                 Establish c = () =>
                 {
                     initial_disasters = 2;
-                    active_player = new Player { cities = 5, food = 5, disasters = initial_disasters };
-                    active_player.add(Development.Irrigation);
+                    var player = new Player { cities = 5, food = 5, disasters = initial_disasters };
+                    player.add(Development.Irrigation);
 
                     var dice = Enumerable.Range(1, 2).Select(x => new Die { disasters = 1 });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player };
+                    initial_roll = new InitialRoll { dice = dice, player = player };
                 };
 
                 Because of = () =>
                     sut.resolve(initial_roll);
 
                 It should_not_give_the_player_any_disasters = () =>
-                    active_player.disasters.ShouldEqual(initial_disasters);
+                    initial_roll.player.disasters.ShouldEqual(initial_disasters);
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
             }
 
@@ -145,12 +141,12 @@ namespace specs.initial_roll.disaster_resolution
                     opponent_two = new Player { disasters = opponent_two_initial_disasters };
 
                     initial_disasters = 2;
-                    active_player = new Player { cities = 5, food = 5, disasters = initial_disasters };
-                    active_player.add(Development.Irrigation);
+                    var player = new Player { cities = 5, food = 5, disasters = initial_disasters };
+                    player.add(Development.Irrigation);
 
                     var dice = Enumerable.Range(1, 3).Select(x => new Die { disasters = 1 });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player, opponents = new[] { opponent_one, opponent_two } };
+                    initial_roll = new InitialRoll { dice = dice, player = player, opponents = new[] { opponent_one, opponent_two } };
                 };
 
                 Because of = () =>
@@ -163,7 +159,6 @@ namespace specs.initial_roll.disaster_resolution
                 };
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
                 static Player opponent_one;
                 static Player opponent_two;
@@ -183,12 +178,12 @@ namespace specs.initial_roll.disaster_resolution
                     opponent_with_medicine.add(Development.Medicine);
 
                     initial_disasters = 2;
-                    active_player = new Player { cities = 5, food = 5, disasters = initial_disasters };
-                    active_player.add(Development.Irrigation);
+                    var player = new Player { cities = 5, food = 5, disasters = initial_disasters };
+                    player.add(Development.Irrigation);
 
                     var dice = Enumerable.Range(1, 3).Select(x => new Die { disasters = 1 });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player, opponents = new[] { opponent_with_medicine, opponent_without_medicine } };
+                    initial_roll = new InitialRoll { dice = dice, player = player, opponents = new[] { opponent_with_medicine, opponent_without_medicine } };
                 };
 
                 Because of = () =>
@@ -201,7 +196,6 @@ namespace specs.initial_roll.disaster_resolution
                 };
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
                 static Player opponent_with_medicine;
                 static Player opponent_without_medicine;
@@ -214,21 +208,24 @@ namespace specs.initial_roll.disaster_resolution
                 Establish c = () =>
                 {
                     initial_disasters = 2;
-                    active_player = new Player { cities = 5, food = 5, disasters = initial_disasters };
+
+                    var player = fake.an<Player>();
+                    player.cities = 5;
+                    player.food = 5;
+                    player.disasters = initial_disasters;
 
                     var dice = Enumerable.Range(1, 4).Select(x => new Die { disasters = 1 });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player };
+                    initial_roll = new InitialRoll { dice = dice, player = player };
                 };
 
                 Because of = () =>
                     sut.resolve(initial_roll);
 
                 It should_give_the_player_four_disasters = () =>
-                    active_player.disasters.ShouldEqual(initial_disasters + 4);
+                    initial_roll.player.disasters.ShouldEqual(initial_disasters + 4);
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
             }
 
@@ -237,22 +234,24 @@ namespace specs.initial_roll.disaster_resolution
                 Establish c = () =>
                 {
                     initial_disasters = 2;
-                    active_player = new Player { cities = 5, food = 5, disasters = initial_disasters };
-                    active_player.add(Monument.GreatWall);
+                    var player = fake.an<Player>();
+                    player.cities = 5;
+                    player.food = 5;
+                    player.disasters = initial_disasters;
+                    player.setup(x => x.has(Monument.GreatWall)).Return(true);
 
                     var dice = Enumerable.Range(1, 4).Select(x => new Die { disasters = 1 });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player };
+                    initial_roll = new InitialRoll { dice = dice, player = player };
                 };
 
                 Because of = () =>
                     sut.resolve(initial_roll);
 
-                It should_give_the_player_four_disasters = () =>
-                    active_player.disasters.ShouldEqual(initial_disasters);
+                It should_give_the_player_no_disasters = () =>
+                    initial_roll.player.disasters.ShouldEqual(initial_disasters);
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static int initial_disasters;
             }
 
@@ -260,21 +259,18 @@ namespace specs.initial_roll.disaster_resolution
             {
                 Establish c = () =>
                 {
-                    active_player = fake.an<Player>();
-
                     var dice = Enumerable.Range(1, 5).Select(x => new Die { disasters = 1 });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player };
+                    initial_roll = new InitialRoll { dice = dice, player = fake.an<Player>() };
                 };
 
                 Because of = () =>
                     sut.resolve(initial_roll);
 
                 It should_remove_all_goods_from_the_player = () =>
-                    active_player.received(x => x.remove_all_goods());
+                    initial_roll.player.received(x => x.remove_all_goods());
 
                 static InitialRoll initial_roll;
-                static Player active_player;
             }
 
             public class and_the_player_rolls_five_skulls_and_has_religion
@@ -283,13 +279,13 @@ namespace specs.initial_roll.disaster_resolution
                 {
                     opponent_one = fake.an<Player>();
                     opponent_two = fake.an<Player>();
-                    
-                    active_player = fake.an<Player>();
-                    active_player.add(Development.Religion);
+
+                    var player = fake.an<Player>();
+                    player.add(Development.Religion);
 
                     var dice = Enumerable.Range(1, 5).Select(x => new Die { disasters = 1 });
 
-                    initial_roll = new InitialRoll { dice = dice, player = active_player, opponents = new[] { opponent_one, opponent_two }};
+                    initial_roll = new InitialRoll { dice = dice, player = player, opponents = new[] { opponent_one, opponent_two } };
                 };
 
                 Because of = () =>
@@ -297,13 +293,12 @@ namespace specs.initial_roll.disaster_resolution
 
                 It should_remove_all_goods_from_opponents = () =>
                 {
-                    active_player.never_received(x => x.remove_all_goods());
+                    initial_roll.player.never_received(x => x.remove_all_goods());
                     opponent_one.received(x => x.remove_all_goods());
                     opponent_two.received(x => x.remove_all_goods());
                 };
 
                 static InitialRoll initial_roll;
-                static Player active_player;
                 static Player opponent_one;
                 static Player opponent_two;
             }

@@ -5,6 +5,7 @@ using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.nsubstitue;
 using meat;
 using meat.initial_roll;
+using meat.worker_distribution;
 
 namespace specs
 {
@@ -80,22 +81,41 @@ namespace specs
         }
 
         [Subject(typeof(Game))]
-        public class when_scoring_a_turn : concern
+        public class when_updating_the_game_for_an_initial_roll : concern
         {
             Establish c = () =>
             {
                 initial_roll = fake.an<InitialRoll>();
-                scorer = depends.on<InitialRollScorer>();
+                updater = depends.on<InitialRollUpdater>();
             };
-            
-            Because of = () =>
-                sut.score_initial_roll(initial_roll);
 
-            It should_delegate_to_the_turn_scorer = () =>
-                scorer.received(x => x.score(initial_roll));
-            
+            Because of = () =>
+                sut.update_for(initial_roll);
+
+            It should_delegate_to_the_initial_roll_updater = () =>
+                updater.received(x => x.update_for(initial_roll));
+
             static InitialRoll initial_roll;
-            static InitialRollScorer scorer;
+            static InitialRollUpdater updater;
+        }
+
+        [Subject(typeof(Game))]
+        public class when_updating_the_game_for_worker_distribution : concern
+        {
+            Establish c = () =>
+            {
+                worker_distribution = fake.an<WorkerDistribution>();
+                updater = depends.on<WorkerDistributionUpdater>();
+            };
+
+            Because of = () =>
+                sut.update_for(worker_distribution);
+
+            It should_delegate_to_the_worker_distribution_updater = () =>
+                updater.received(x => x.update_for(worker_distribution));
+
+            static WorkerDistribution worker_distribution;
+            static WorkerDistributionUpdater updater;
         }
     }
 }

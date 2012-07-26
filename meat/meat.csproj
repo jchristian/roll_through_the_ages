@@ -65,12 +65,14 @@
     <Compile Include="initial_roll\food_collection\FoodCollector.cs" />
     <Compile Include="initial_roll\food_collection\ICalculateTheFoodFromADice.cs" />
     <Compile Include="initial_roll\goods_collection\GoodCollector.cs" />
-    <Compile Include="initial_roll\InitialRollScorer.cs" />
+    <Compile Include="initial_roll\InitialRoll.cs" />
+    <Compile Include="initial_roll\InitialRollUpdater.cs" />
     <Compile Include="IReturnTheNextPlayer.cs" />
-    <Compile Include="InitialRoll.cs" />
     <Compile Include="Monument.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="worker_distribution\WorkerDistribution.cs" />
+    <Compile Include="worker_distribution\WorkerDistributionUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="collection\food\" />

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace meat
+namespace meat.initial_roll
 {
     public class InitialRoll
     {

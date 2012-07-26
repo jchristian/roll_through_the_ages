@@ -1,4 +1,4 @@
-﻿using Machine.Specifications;
+using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.nsubstitue;
 using meat;
@@ -8,19 +8,18 @@ using meat.initial_roll.disaster_resolution;
 using meat.initial_roll.food_collection;
 using meat.initial_roll.goods_collection;
 
-namespace specs
+namespace specs.initial_roll
 {
     public class InitialScorerSpecs
     {
-        public abstract class concern : Observes<InitialRollScorer> { }
+        public abstract class concern : Observes<InitialRollUpdater> { }
 
-        [Subject(typeof(InitialRollScorer))]
-        public class when_scoring_an_initial_roll : concern
+        [Subject(typeof(InitialRollUpdater))]
+        public class when_updating_for_an_initial_roll : concern
         {
             Establish c = () =>
             {
-                active_player = new Player("", fake.an<GoodStore>());
-                initial_roll = new InitialRoll { player = active_player };
+                initial_roll = new InitialRoll { player = new Player("", fake.an<GoodStore>()) };
                 
                 good_collector = depends.on<GoodCollector>();
                 food_collector = depends.on<FoodCollector>();
@@ -29,7 +28,7 @@ namespace specs
             };
 
             Because of = () =>
-                sut.score(initial_roll);
+                sut.update_for(initial_roll);
 
             It should_collect_the_goods = () =>
                 good_collector.received(x => x.collect(initial_roll));
@@ -41,10 +40,9 @@ namespace specs
                 disaster_resolver.received(x => x.resolve(initial_roll));
 
             It should_feed_the_cities = () =>
-                city_feeder.received(x => x.feed(active_player));
+                city_feeder.received(x => x.feed(initial_roll.player));
 
             static InitialRoll initial_roll;
-            static Player active_player;
             static GoodCollector good_collector;
             static FoodCollector food_collector;
             static DisasterResolver disaster_resolver;
