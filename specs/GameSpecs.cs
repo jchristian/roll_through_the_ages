@@ -4,6 +4,7 @@ using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.nsubstitue;
 using meat;
+using meat.development_purchasing;
 using meat.initial_roll;
 using meat.worker_distribution;
 
@@ -116,6 +117,25 @@ namespace specs
 
             static WorkerDistribution worker_distribution;
             static WorkerDistributionUpdater updater;
+        }
+
+        [Subject(typeof(Game))]
+        public class when_updating_the_game_for_development_purchasing : concern
+        {
+            Establish c = () =>
+            {
+                development_purchase = fake.an<DevelopmentPurchase>();
+                updater = depends.on<DevelopmentPurchaseUpdater>();
+            };
+
+            Because of = () =>
+                sut.update_for(development_purchase);
+
+            It should_delegate_to_the_worker_distribution_updater = () =>
+                updater.received(x => x.update_for(development_purchase));
+
+            static DevelopmentPurchase development_purchase;
+            static DevelopmentPurchaseUpdater updater;
         }
     }
 }

@@ -1,22 +1,22 @@
 using System;
 using System.Collections.Generic;
-using meat.development_purchasing;
+using meat.worker_distribution;
 
 namespace meat
 {
-    public class GoodStore
+    public class MonumentStore
     {
-        public virtual void add(int number_of_goods)
+        public virtual void add(IEnumerable<AddWorkersToMonument> workers_added_to_monuments)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void remove_all()
+        public virtual IEnumerable<Monument> get_completed()
         {
             throw new NotImplementedException();
         }
 
-        public virtual void remove(IEnumerable<Good> goods)
+        public virtual bool has(Monument monument)
         {
             throw new NotImplementedException();
         }

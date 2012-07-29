@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using meat.development_purchasing;
 using meat.worker_distribution;
 
 namespace meat
@@ -61,23 +62,15 @@ namespace meat
         {
             return monument_store.has(monument);
         }
-    }
 
-    public class MonumentStore
-    {
-        public virtual void add(IEnumerable<AddWorkersToMonument> workers_added_to_monuments)
+        public virtual void remove_food(int quantity_of_food)
         {
-            throw new NotImplementedException();
+            food -= quantity_of_food;
         }
 
-        public virtual IEnumerable<Monument> get_completed()
+        public virtual void remove_goods(IEnumerable<Good> goods)
         {
-            throw new NotImplementedException();
-        }
-
-        public virtual bool has(Monument monument)
-        {
-            throw new NotImplementedException();
+            good_store.remove(goods);
         }
     }
 }

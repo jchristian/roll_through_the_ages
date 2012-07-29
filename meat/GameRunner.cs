@@ -9,7 +9,7 @@ namespace meat
 
         public Game play_new_game(IEnumerable<Player> players)
         {
-            current_game = new Game(players, null, null, null, null);
+            current_game = new Game(players, null, null, null, null, null);
             current_game.start_next_turn();
 
             return current_game;

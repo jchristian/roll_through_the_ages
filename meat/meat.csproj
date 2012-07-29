@@ -40,8 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Development.cs" />
+    <Compile Include="development_purchasing\DevelopmentPurchase.cs" />
+    <Compile Include="development_purchasing\DevelopmentPurchaseUpdater.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameRunner.cs" />
+    <Compile Include="Good.cs" />
     <Compile Include="GoodStore.cs" />
     <Compile Include="ICheckForEndingConditions.cs" />
     <Compile Include="ICreateATurnQueue.cs" />
@@ -69,15 +72,13 @@
     <Compile Include="initial_roll\InitialRollUpdater.cs" />
     <Compile Include="IReturnTheNextPlayer.cs" />
     <Compile Include="Monument.cs" />
+    <Compile Include="MonumentStore.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="worker_distribution\WorkerDistribution.cs" />
     <Compile Include="worker_distribution\WorkerDistributionUpdater.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="collection\food\" />
-    <Folder Include="collection\goods\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
