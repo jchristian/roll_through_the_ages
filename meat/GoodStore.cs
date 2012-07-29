@@ -20,5 +20,10 @@ namespace meat
         {
             throw new NotImplementedException();
         }
+
+        public virtual void remove(Good good, int quantity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -72,5 +72,10 @@ namespace meat
         {
             good_store.remove(goods);
         }
+
+        public virtual void remove(Good good, int quantity)
+        {
+            good_store.remove(good, quantity);
+        }
     }
 }

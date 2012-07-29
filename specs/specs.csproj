@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="development_purchasing\DevelopmentPurchaseUpdaterSpecs.cs" />
+    <Compile Include="excess_goods_discarding\ExcessGoodsDiscarderSpecs.cs" />
     <Compile Include="GameSpecs.cs" />
     <Compile Include="initial_roll\city_feeding\CityFeederSpecs.cs" />
     <Compile Include="initial_roll\disaster_resolution\DisasterResolverSpecs.cs" />

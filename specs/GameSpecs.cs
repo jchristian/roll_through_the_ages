@@ -5,6 +5,7 @@ using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.nsubstitue;
 using meat;
 using meat.development_purchasing;
+using meat.excess_good_discarding;
 using meat.initial_roll;
 using meat.worker_distribution;
 
@@ -137,5 +138,25 @@ namespace specs
             static DevelopmentPurchase development_purchase;
             static DevelopmentPurchaseUpdater updater;
         }
+
+        [Subject(typeof(Game))]
+        public class when_updating_the_game_for_discarding_excess_goods : concern
+        {
+            Establish c = () =>
+            {
+                discard_excess_goods = fake.an<DiscardExcessGoods>();
+                excess_good_discarder = depends.on<ExcessGoodsDiscarder>();
+            };
+
+            Because of = () =>
+                sut.update_for(discard_excess_goods);
+
+            It should_discard_excess_goods_from_the_player = () =>
+                excess_good_discarder.received(x => x.update_for(discard_excess_goods));
+
+            static DiscardExcessGoods discard_excess_goods;
+            static ExcessGoodsDiscarder excess_good_discarder;
+        }
     }
+
 }

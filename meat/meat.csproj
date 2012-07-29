@@ -42,6 +42,9 @@
     <Compile Include="Development.cs" />
     <Compile Include="development_purchasing\DevelopmentPurchase.cs" />
     <Compile Include="development_purchasing\DevelopmentPurchaseUpdater.cs" />
+    <Compile Include="excess_good_discarding\DiscardExcessGoods.cs" />
+    <Compile Include="excess_good_discarding\DiscardGoods.cs" />
+    <Compile Include="excess_good_discarding\ExcessGoodsDiscarder.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameRunner.cs" />
     <Compile Include="Good.cs" />
