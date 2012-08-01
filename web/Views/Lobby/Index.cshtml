@@ -1,0 +1,32 @@
+﻿@model web.Models.LobbyModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Roll Through the Ages - Lobby</title>
+    </head>
+    <body>
+        <h1>Lobby</h1>
+        <h2>Games</h2>
+        <table class="games">
+            <thead>
+                <td>Name</td>
+                <td># of Players</td>
+                <td />
+            </thead>
+            @foreach(var game in Model.Games)
+            {
+                <tr>
+                    <td>@game.Name</td>
+                    <td>@game.NumberOfPlayers</td>
+                    <td>@Html.ActionLink("Join", "Join", "Game", new { id = game.Id }, null)</td>
+                </tr>
+            }
+        </table>
+    </body>
+</html>
