@@ -1,0 +1,12 @@
+﻿h2 {
+}
+
+.player .cities img {
+    height: 28px;
+    width: 28px;
+    margin-bottom: -10px;
+}
+
+.player .cities span {
+    margin: 0 0 0 5px;
+}

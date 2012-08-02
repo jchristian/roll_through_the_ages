@@ -1,12 +1,10 @@
 ﻿using System.Web.Mvc;
-using web.Models;
+using web.Models.Lobby;
 
 namespace web.Controllers
 {
     public class LobbyController : Controller
     {
-        //
-        // GET: /Lobby/
         public ActionResult Index()
         {
             var model = new LobbyModel

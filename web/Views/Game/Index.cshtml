@@ -1,0 +1,23 @@
+﻿@using web.Extensions
+
+@model web.Models.Game.GameModel
+
+@{
+    ViewBag.Title = "Roll Through the Ages - {0}".FormatWith(Model.Name);
+}
+
+<h1>@Model.Name</h1>
+<ol>
+    @foreach(var opponent in Model.Opponents)
+    {
+        <li class="opponent">
+            @{ Html.RenderPartial("Opponent", opponent); }
+        </li>   
+    }
+    <li class="player">
+        @{ Html.RenderPartial("Player", Model.Player); }
+    </li>
+</ol>
+<div>
+    @{ Html.RenderPartial("Dice", Model.Dice); }
+</div>
